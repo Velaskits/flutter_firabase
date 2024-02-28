@@ -1,9 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firabase/firebase_options.dart';
 import 'package:flutter_firabase/paginas/pagina_login.dart';
+import 'package:flutter_firabase/paginas/pagina_registre.dart';
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MainApp());
 }
 
@@ -14,7 +22,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PaginaLogin(),
+      home: PaginaRegistre(),
     );
   }
 }
@@ -34,5 +42,6 @@ class MainApp extends StatelessWidget {
 
 6) Incluir las librerias de Firebase que queramos utilizar.
   - flutter pub add firebas_auth
+  - flutter pub add firebase_core
 
 */
