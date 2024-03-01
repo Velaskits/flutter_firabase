@@ -3,23 +3,24 @@ import 'package:flutter_firabase/components/boto_auth.dart';
 import 'package:flutter_firabase/components/textfield_auth.dart';
 
 class PaginaRegistre extends StatefulWidget {
+  final void Function() alFerClic;
 
-
-  const PaginaRegistre({super.key});
+  const PaginaRegistre({
+    super.key, 
+    required this.alFerClic
+  });
 
   @override
   State<PaginaRegistre> createState() => _PaginaRegistreState();
 }
 
 class _PaginaRegistreState extends State<PaginaRegistre> {
-
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
-  final TextEditingController controllerConfirmarPassword = TextEditingController();
+  final TextEditingController controllerConfirmarPassword =
+      TextEditingController();
 
-  void ferRegistre(){
-
-  }
+  void ferRegistre() {}
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +39,11 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                     size: 120,
                     color: Color.fromARGB(255, 255, 240, 218),
                   ),
-            
+
                   const SizedBox(
                     height: 25,
                   ),
-            
+
                   // Frase.
                   const Text(
                     "Crea un compte nou",
@@ -52,11 +53,11 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-            
+
                   const SizedBox(
                     height: 25,
                   ),
-            
+
                   // Text divisori.
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25),
@@ -88,33 +89,33 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                       ],
                     ),
                   ),
-            
+
                   const SizedBox(
                     height: 10,
                   ),
-            
+
                   // TextField Email.
                   TextFieldAuth(
                     controller: controllerEmail,
                     obscureText: false,
                     hintText: "Email",
                   ),
-            
+
                   const SizedBox(
                     height: 10,
                   ),
-            
+
                   // TextField Password.
                   TextFieldAuth(
                     controller: controllerPassword,
                     obscureText: true,
                     hintText: "Password",
                   ),
-            
+
                   const SizedBox(
                     height: 10,
                   ),
-            
+
                   // No estas registrat/da?
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -128,26 +129,27 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                           width: 5,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: widget.alFerClic,
                           child: const Text(
                             "Login",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, 
+                                fontWeight: FontWeight.bold,
                                 color: Colors.blue),
                           ),
                         ),
                       ],
                     ),
                   ),
-            
-                  const SizedBox(height: 10,),
-            
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
                   // Botó login.
                   BotoAuth(
                     text: "Registra't",
                     onTap: ferRegistre,
                   ),
-            
                 ],
               ),
             ),

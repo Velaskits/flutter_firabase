@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firabase/auth/login_o_registre.dart';
 import 'package:flutter_firabase/components/boto_auth.dart';
 import 'package:flutter_firabase/components/textfield_auth.dart';
 
 class PaginaLogin extends StatefulWidget {
-  const PaginaLogin({super.key});
+
+  final void Function() alFerClic;
+
+  const PaginaLogin({
+    super.key, 
+    required this.alFerClic
+  });
 
   @override
   State<PaginaLogin> createState() => _MyWidgetState();
@@ -124,7 +131,7 @@ class _MyWidgetState extends State<PaginaLogin> {
                           width: 5,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: widget.alFerClic,
                           child: const Text(
                             "Registra't",
                             style: TextStyle(

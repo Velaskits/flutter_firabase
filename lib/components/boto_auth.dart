@@ -24,7 +24,7 @@ class BotoAuth extends StatelessWidget {
           borderRadius: BorderRadiusDirectional.circular(10),
         ),
         child: Text(
-          "Login",
+          text,
           style: TextStyle(
             color: Colors.orange[100],
             fontWeight: FontWeight.bold,
