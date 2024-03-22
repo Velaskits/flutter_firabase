@@ -6,7 +6,7 @@ class BotoAuth extends StatelessWidget {
   final Function() onTap;
 
 
-  BotoAuth({
+  const BotoAuth({
       super.key,
       required this.text, 
       required this.onTap

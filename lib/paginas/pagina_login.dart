@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firabase/auth/login_o_registre.dart';
+import 'package:flutter_firabase/auth/servei_auth.dart';
 import 'package:flutter_firabase/components/boto_auth.dart';
 import 'package:flutter_firabase/components/textfield_auth.dart';
 
@@ -20,8 +20,24 @@ class _MyWidgetState extends State<PaginaLogin> {
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
 
-  void ferLogin(){
-    
+  Future<void> ferLogin(BuildContext context)  async {
+    final serveiAuth = ServeiAuth();
+
+    try{
+      await serveiAuth.loginAmbEmailPassword(
+        controllerEmail.text,
+        controllerPassword.text,
+      );
+    } catch (e){
+      // ignore: use_build_context_synchronously
+      showDialog(
+        // ignore: use_build_context_synchronously
+        context: context, 
+        builder: (context) => AlertDialog(
+        title: const Text("Error"),
+        content: Text(e.toString()),
+      ));
+    }
   }
 
   @override
@@ -148,7 +164,7 @@ class _MyWidgetState extends State<PaginaLogin> {
                   // Botó login.
                   BotoAuth(
                     text: "Login",
-                    onTap: ferLogin,
+                    onTap:() => ferLogin(context),
                   ),
             
                 ],

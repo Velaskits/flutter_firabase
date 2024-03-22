@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firabase/auth/servei_auth.dart';
 import 'package:flutter_firabase/components/boto_auth.dart';
 import 'package:flutter_firabase/components/textfield_auth.dart';
 
 class PaginaRegistre extends StatefulWidget {
   final void Function() alFerClic;
 
-  const PaginaRegistre({
-    super.key, 
-    required this.alFerClic
-  });
+  const PaginaRegistre({super.key, required this.alFerClic});
 
   @override
   State<PaginaRegistre> createState() => _PaginaRegistreState();
@@ -20,7 +18,19 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
   final TextEditingController controllerConfirmarPassword =
       TextEditingController();
 
-  void ferRegistre() {}
+  void ferRegistre(BuildContext context) {
+    final serveiAuth = ServeiAuth();
+    try {
+      serveiAuth.registreambemailpassword(
+          controllerEmail.text, controllerPassword.text);
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              title: const Text("Error"), 
+              content: Text(e.toString())));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +158,7 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                   // Botó login.
                   BotoAuth(
                     text: "Registra't",
-                    onTap: ferRegistre,
+                    onTap: () => ferRegistre(context),
                   ),
                 ],
               ),
